@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Term Deposit</title>
+ 
+    <link href="styles/style.css" rel="stylesheet"> 
+  </head>
+
+  <body>
+
+    <div class="topnav">
+        <a href="#about">Logout</a>
+        <a href="#loan">Loan</a>
+        <a class="active" href="#term-dep">Term Deposit</a>
+        <a href="#transactions">Transaction</a>
+        <a href="#home">Home</a>
+    </div>
+
+    <div class="super-container">
+        <div class="block1">
+            <h1 class="A">CREATE TERM DEPOSIT</h1>
+        </div>
+    
+        <!--Container for label, inputs and buttons-->
+        <div class="flex-container2">
+            <div class="amount">
+                <label for="amount" class="label-field">Amount</label>
+                <input type="number" class="input-field" name="amount" id="amount"> 
+            </div>
+            <div class="tenure">
+                <label for="tenure" class="label-field">Tenure</label>
+                <input type="number" class="input-field" name="tenure" id="tenure"> 
+            </div>
+        </div>
+        <div class="flex-container3 box">
+            <button type="button" name="info" class="button button1">VIEW INTEREST RATES</button>
+            
+            <button type="button" name="create" class="button button2">CREATE</button>
+        </div>
+            
+        <!--View TD block-->
+        <div class="block2">
+            <h1 class="B">Current Term Deposits</h1>
+        </div>
+        
+        
+        <script src="scripts/main.js"></script>
+    </div>
+    <!--Background image and overlay text and links container-->  
+    <!--<div class="container1">
+        <img src="images/abs.jpg" alt="background">
+    </div>
+    <!--Create TD block-->
+    
+    </body>
+  </html>
