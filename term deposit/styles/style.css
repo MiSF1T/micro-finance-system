@@ -101,6 +101,10 @@ h1.B {
     height: 20%;
 }*/
 
+textarea:focus, input:focus {
+    border-color: transparent !important;
+}
+
 #amount {
     /*position: relative;
     top: 50px;
