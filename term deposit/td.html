@@ -10,7 +10,7 @@
   </head>
 
   <body>
-
+    <!-- NAVIGATION BAR---------------------------->
     <div class="topnav">
         <a href="#about">Logout</a>
         <a href="#loan">Loan</a>
@@ -18,13 +18,17 @@
         <a href="#transactions">Transaction</a>
         <a href="#home">Home</a>
     </div>
+    <!---------------------------------------------->
 
+    <!-- Container for rest of body elements-------->
     <div class="super-container">
+        <!--Create TD block------------------------->
         <div class="block1">
             <h1 class="A">Create Term Deposit</h1>
         </div>
-    
-        <!--Container for label, inputs and buttons-->
+        <!------------------------------------------>
+
+        <!--Container for Input field and labels---->
         <div class="flex-container2">
             <div class="amount">
                 <label for="amount" class="label-field">Amount</label>
@@ -35,16 +39,21 @@
                 <input type="number" class="input-field" name="tenure" id="tenure"> 
             </div>
         </div>
-        <div class="flex-container3 box">
+        <!------------------------------------------->
+
+        <!--Container for buttons-------------------->
+        <div class="flex-container3">
             <button type="button" name="info" class="button button1">VIEW INTEREST RATES</button>
             
             <button type="button" name="create" class="button button2">CREATE</button>
         </div>
-            
-        <!--View TD block-->
+        <!-------------------------------------------> 
+
+        <!--View TD block---------------------------->
         <div class="block2">
             <h1 class="B">Current Term Deposits</h1>
         </div>
+        <!------------------------------------------->
         
         <!--Current term deposit table(responsive container)
         <div class="table-wrapper">
@@ -74,7 +83,8 @@
                 </tr>
             </table>
         </div>-->
-
+        
+        <!--Current TD table #2------------------------->
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
@@ -88,7 +98,7 @@
 
                 <tbody>
                 <tr>
-                    <td>8765</td>
+                    <td>2765</td>
                     <td>20000</td>
                     <td>2</td>
                     <td>20/01/2020</td>
@@ -100,7 +110,7 @@
                     <td>9/04/2020</td>
                 </tr>
                 <tr>
-                    <td>2765</td>
+                    <td>8239</td>
                     <td>10000</td>
                     <td>1</td>
                     <td>17/05/2020</td>
@@ -108,7 +118,8 @@
                 <tbody>
             </table>
         </div>
-        
+        <!---------------------------------------------->
+
         <script src="scripts/main.js"></script>
     </div> 
     </body>
