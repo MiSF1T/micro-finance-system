@@ -15,6 +15,7 @@ body {
     height: 20%;*/
 }
 
+/* Add a box container for all body elements */
 .super-container {
     max-width: 70%;
     margin: 0 auto;
@@ -22,6 +23,7 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+/*NAVBAR: -----------------------------------------------*/
 /* Add a black background to the top navigation */
 
 .topnav {  
@@ -52,20 +54,9 @@ body {
     background-color: rgba(19, 57, 114, 0.9);
     color: rgb(255, 255, 255);
   }
+/*---------------------------------------------------------*/
 
-/* Style label and input field */
-.flex-container2 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
-.flex-container3 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-}
-
+/* H1: ----------------------------------------------------*/
 /* Style H1 wrappers */
 .block1 {
     background-color: rgba(0, 50, 107,0.9);
@@ -93,7 +84,7 @@ h1.B {
     color: rgba(0, 50, 107,0.9);
     /*text-shadow: 3px 3px 1px black;*/
 }
-
+/*---------------------------------------------------------*/
 /*img {
     display: block;
     margin: 0 auto;
@@ -103,6 +94,20 @@ h1.B {
 
 textarea:focus, input:focus {
     border-color: transparent !important;
+}
+
+/*LABEL & INPUT: ------------------------------------------*/
+/* Style label and input field */
+.flex-container2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.flex-container3 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 
 /* Style input fields */
@@ -139,8 +144,9 @@ textarea:focus, input:focus {
     margin: 5px 10px 5px 20px;
     color: rgba(12, 12, 12, 0.9);
 }
+/*---------------------------------------------------------*/
 
-/* Style buttons */
+/* BUTTONS: -----------------------------------------------*/
 .button {
     border: none;
     color: white;
