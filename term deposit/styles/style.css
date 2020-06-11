@@ -93,19 +93,14 @@ h1.B {
 }*/
 
 /*LABEL & INPUT: ------------------------------------------*/
-/* Style label and input field */
+/* Label and input field wrapper */
 .flex-container2 {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-.flex-container3 {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-}
-
+/* Focus selected input field */
 textarea:focus, input:focus {
   border-color: transparent !important;
 }
@@ -147,6 +142,13 @@ textarea:focus, input:focus {
 /*---------------------------------------------------------*/
 
 /* BUTTONS: -----------------------------------------------*/
+/* Buttons wrapper */
+.flex-container3 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+}
+
 .button {
     border: none;
     color: white;
