@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Term Deposit</title>
+ 
+    <link href="styles/style.css" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <!-- NAVIGATION BAR---------------------------->
+    <div class="topnav">
+        <a href="#logout">Logout</a>
+        <a class="active" href="#loan">Loan</a>
+        <a href="#term-dep">Term Deposit</a>
+        <a href="#transactions">Transaction</a>
+        <a href="#home">Home</a>
+    </div>
+    <!---------------------------------------------->
+
+    <!-- Container for rest of body elements-------->
+    <div class="super-container">
+        <!--Create TD block------------------------->
+        <div class="block1">
+            <h1 class="A">Create Loan</h1>
+        </div>
+        <!------------------------------------------>
+
+        <!--Container for Input field and labels---->
+        <div class="flex-container2">
+            <div class="amount">
+                <label for="amount" class="label-field">Amount</label>
+                <input type="number" class="input-field" name="amount" id="amount"> 
+            </div>
+            <div class="ann">
+                <label for="ann" class="label-field">Annual Income</label>
+                <input type="number" class="input-field" name="ann" id="ann"> 
+            </div>
+            <div class="installment">
+                <label for="installment" class="label-field">Installments</label>
+                <input type="number" class="input-field" name="installment" id="installment"> 
+            </div>
+        </div>
+        <!------------------------------------------->
+
+        <!--Container for buttons-------------------->
+        <div class="flex-container3">
+            <button type="button" name="info" class="button button1">VIEW INTEREST RATES</button>
+            
+            <button type="button" name="create" class="button button2">CREATE</button>
+        </div>
+        <!-------------------------------------------> 
+
+        <!--View TD block---------------------------->
+        <div class="block2">
+            <h1 class="B">Current Term Deposits</h1>
+        </div>
+        <!------------------------------------------->
+        
+        <!--Current term deposit table(responsive container)
+        <div class="table-wrapper">
+            <table>
+                <th>TD ID</th>
+                <th>AMOUNT</th>
+                <th>TENURE(years)</th>
+                <th>CREATION DATE</th>
+    
+                <tr>
+                    <td>8765</td>
+                    <td>20000</td>
+                    <td>2</td>
+                    <td>20/01/2020</td>
+                </tr>
+                <tr>
+                    <td>4256</td>
+                    <td>10000</td>
+                    <td>1</td>
+                    <td>9/04/2020</td>
+                </tr>
+                <tr>
+                    <td>2765</td>
+                    <td>10000</td>
+                    <td>1</td>
+                    <td>17/05/2020</td>
+                </tr>
+            </table>
+        </div>-->
+
+        <!--Current TD table #2------------------------->
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>TD ID</th>
+                    <th>AMOUNT</th>
+                    <th>TENURE(years)</th>
+                    <th>CREATION DATE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>2765</td>
+                    <td>20000</td>
+                    <td>2</td>
+                    <td>20/01/2020</td>
+                </tr>
+                <tr>
+                    <td>4256</td>
+                    <td>10000</td>
+                    <td>1</td>
+                    <td>9/04/2020</td>
+                </tr>
+                <tr>
+                    <td>8239</td>
+                    <td>10000</td>
+                    <td>1</td>
+                    <td>17/05/2020</td>
+                </tr>
+                <tbody>
+            </table>
+        </div>
+        <!---------------------------------------------->
+
+        <script src="scripts/main.js"></script>
+    </div> 
+    </body>
+  </html>
