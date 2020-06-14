@@ -87,7 +87,7 @@ img {
     text-align: left;
     margin: 0px 0px 15px 0px;
     padding: 6px;    
-    color: rgb(255, 255, 255);
+    color: rgba(34, 34, 34,0.8);
 
     position: absolute;
     top: 30%;
