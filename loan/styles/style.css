@@ -118,7 +118,7 @@ textarea:focus, input:focus {
     font-size: 16px;
 }
 
-#tenure {
+#ann {
     /*position: relative;
     top: 50px;
     left: 350px;*/
@@ -128,6 +128,18 @@ textarea:focus, input:focus {
     color: rgba(27, 27, 27, 0.8); 
     margin:20px 10px;
     font-size: 16px;
+}
+
+#installment {
+  /*position: relative;
+  top: 50px;
+  left: 350px;*/
+  border: 5px solid rgba(26, 209, 234, 0.9);
+  padding: 10px 0;
+  width: 160px;
+  color: rgba(27, 27, 27, 0.8); 
+  margin:20px 10px;
+  font-size: 16px;
 }
 
 /* Style input labels */
