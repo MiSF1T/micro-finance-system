@@ -136,22 +136,17 @@ h1.B {
   justify-content: center;
 }
 
-/* Focus selected input field */
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
-
 /* Style input fields */
 #amount {
     /*position: relative;
     top: 50px;
     left: 350px;*/
     border: 1px solid rgba(46, 204, 113, 1);
-    padding: 10px 0;
+    padding: 6px 0;
     width: 160px;
     color: rgba(27, 27, 27, 0.8);
     margin:20px auto;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 #tenure {
@@ -159,11 +154,11 @@ textarea:focus, input:focus {
     top: 50px;
     left: 350px;*/
     border: 1px solid rgba(46, 204, 113, 1);
-    padding: 10px 0;
+    padding: 6px 0;
     width: 160px;
     color: rgba(27, 27, 27, 0.8); 
     margin:20px 10px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /* Style input labels */
@@ -227,44 +222,6 @@ textarea:focus, input:focus {
     color: white;
   }
 /*---------------------------------------------------------*/
-
-  /* Style table #1
-  .table-wrapper {
-    overflow-x:auto;
-    display: flex;
-    justify-content: center;
-    max-width: 1200px;
-  }
-
-  table {
-    width: 60%;
-    border-collapse: collapse;
-    margin: 20px auto;
-  }
-
-  th  {
-    height: 40px;
-    background-color: rgba(26, 209, 234, 0.9);
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  td{
-    height: 30px;
-  }
-
-  th, td {
-    padding: 10px;
-    border-bottom: 1px solid rgba(19, 57, 114, 0.9);
-  }
-
-  table, th, td {
-    border: 1px solid rgba(109, 109, 109, 0.8);
-    text-align: center;
-  }
-
- 
-  tr:nth-child(even) {background-color: rgba(255,255,255, 0.6);}
-  */
 
   /*TABLE: ----------------------------------------------*/
 .table-wrapper{
@@ -373,5 +330,86 @@ textarea:focus, input:focus {
       display: block;
       text-align: center;
   }
+}
+/*---------------------------------------------------------*/
+
+/*DROP-DOWN: ----------------------------------------------*/
+/*
+/* Reset Select *//*
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Remove IE arrow *//*
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select *//*
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 4;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+  font-size: 20px;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow *//*
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition *//*
+.select:hover::after {
+  color: #f39c12;
+}
+*/
+.slct {
+    border: 1px solid #000;
+    width: 220px;
+    line-height: 1;
+    height: 34px;
+    padding: 5px;
+    font-size: 16px;
+    color: rgba(37, 37, 37, 0.9);
+    background: rgba(46, 204, 113, 1);
+}
+
+.select {
+  display: flex;  
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.block3 {
+  background-color: rgba(1, 152, 117, 1);
+  height: 50px;
+  position: relative;
+  top: 30px;
 }
 /*---------------------------------------------------------*/
