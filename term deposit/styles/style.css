@@ -23,6 +23,11 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+/* Remove outline on focus */
+*:focus {
+  outline: 0 !important;
+}
+
 /*NAVBAR: -----------------------------------------------*/
 /* Add a black background to the top navigation */
 
@@ -115,7 +120,7 @@ h1.A {
     text-align: center;
     margin: 0px 0px 15px 0px;
     padding: 6px;    
-    color: rgba(255,255,255, 0.6);
+    color: rgba(255,255,255, 0.9);
     /*text-shadow: 3px 3px 1px black;*/
 }
 h1.B {
@@ -157,6 +162,15 @@ h1.B {
     padding: 6px 0;
     width: 160px;
     color: rgba(27, 27, 27, 0.8); 
+    margin:20px 10px;
+    font-size: 15px;
+}
+
+.slct1 {
+    border: 1px solid rgba(46, 204, 113, 1);
+    padding: 5px 0;
+    width: 180px;
+    color: rgba(27, 27, 27, 0.8);
     margin:20px 10px;
     font-size: 15px;
 }
@@ -394,7 +408,7 @@ select {
     line-height: 1;
     height: 34px;
     padding: 5px;
-    font-size: 16px;
+    font-size: 15px;
     color: rgba(37, 37, 37, 0.9);
     background: rgba(46, 204, 113, 1);
 }
