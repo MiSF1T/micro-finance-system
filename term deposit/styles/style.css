@@ -28,7 +28,7 @@ body {
 
 .topnav {  
     background-image: url('../images/nav.jpg');
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(1, 152, 117, 1);
     overflow: hidden;
   }
 
@@ -44,14 +44,14 @@ body {
   
   /* Change the color of links on hover */
   .topnav a:hover{
-    background-color:rgba(26, 209, 234, 0.9);
+    background-color:rgba(46, 204, 113, 1);
     color: rgba(255, 255, 255, 0.9);
     transition-duration: 0.6s;
   }
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: rgba(19, 57, 114, 0.9);
+    background-color: rgba(1, 152, 117, 1);
     color: rgb(255, 255, 255);
   }
 /*---------------------------------------------------------*/
@@ -69,7 +69,7 @@ img {
 /* H1: ----------------------------------------------------*/
 /* Style H1 wrappers */
 .block1 {
-    background-color: rgba(0, 50, 107,0.9);
+    background-color: rgba(1, 152, 117, 1);
 
 }
 
@@ -79,28 +79,22 @@ img {
 
 /* Style H1 elements */
 h1.A {
-    font-size: 35px;
+    font-size:2.5vw;
     text-align: center;
     margin: 0px 0px 15px 0px;
-    padding: 12px;    
+    padding: 6px;    
     color: rgba(255,255,255, 0.6);
     /*text-shadow: 3px 3px 1px black;*/
 }
 h1.B {
-    font-size: 35px;
+    font-size:2.5vw;
     text-align: center;
     margin: 40px auto;
-    padding: 12px 0;    
-    color: rgba(0, 50, 107,0.9);
+    padding: 6px 0;    
+    color: rgba(1, 152, 117, 1);
     /*text-shadow: 3px 3px 1px black;*/
 }
 /*---------------------------------------------------------*/
-/*img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: 20%;
-}*/
 
 /*LABEL & INPUT: ------------------------------------------*/
 /* Label and input field wrapper */
@@ -120,7 +114,7 @@ textarea:focus, input:focus {
     /*position: relative;
     top: 50px;
     left: 350px;*/
-    border: 5px solid rgba(26, 209, 234, 0.9);
+    border: 1px solid rgba(46, 204, 113, 1);
     padding: 10px 0;
     width: 160px;
     color: rgba(27, 27, 27, 0.8);
@@ -132,7 +126,7 @@ textarea:focus, input:focus {
     /*position: relative;
     top: 50px;
     left: 350px;*/
-    border: 5px solid rgba(26, 209, 234, 0.9);
+    border: 1px solid rgba(46, 204, 113, 1);
     padding: 10px 0;
     width: 160px;
     color: rgba(27, 27, 27, 0.8); 
@@ -145,7 +139,7 @@ textarea:focus, input:focus {
     /*position: relative;
     top: 50px;
     left: 350px;*/
-    font-size: 25px;
+    font-size: 20px;
     margin: 5px 10px 5px 20px;
     color: rgba(12, 12, 12, 0.9);
 }
@@ -178,11 +172,11 @@ textarea:focus, input:focus {
     bottom: 110px;*/
     background-color: white;
     color: black;
-    border: 2px solid rgba(26, 209, 234, 0.9);
+    border: 2px solid rgba(46, 204, 113, 1);
   }
 
   .button1:hover {
-    background-color: rgba(26, 209, 234, 0.9);
+    background-color: rgba(46, 204, 113, 1);
     color: white;
   }
 
@@ -193,11 +187,11 @@ textarea:focus, input:focus {
     border-radius: 30px;
     background-color: white;
     color: black;
-    border: 5px solid rgba(0, 50, 107,0.9);
+    border: 5px solid rgba(1, 152, 117, 1);
   }
 
   .button2:hover {
-    background-color: rgba(0, 50, 107,0.9);
+    background-color: rgba(1, 152, 117, 1);
     color: white;
   }
 /*---------------------------------------------------------*/
@@ -270,13 +264,13 @@ textarea:focus, input:focus {
 
 .fl-table thead th {
   color: #ffffff;
-  background: rgba(26, 209, 234, 0.9);
+  background: rgba(46, 204, 113, 1);
 }
 
 
 .fl-table thead th:nth-child(odd) {
   color: #ffffff;
-  background: rgba(0, 50, 107,0.9);
+  background: rgba(1, 152, 117, 1);
 }
 
 .fl-table tr:nth-child(even) {
