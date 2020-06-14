@@ -220,3 +220,29 @@ textarea:focus, input:focus {
     background-color: rgba(0, 50, 107,0.9);
     color: white;
   }
+/*---------------------------------------------------------*/
+
+/* DISPLAY LOAN: ------------------------------------------*/
+.flex-container4 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  
+}
+
+.display-field {
+  border: 1px solid rgba(26, 209, 234, 0.9);
+    padding: 6px 0;
+    width: 160px;
+    color: rgba(27, 27, 27, 0.8); 
+    margin:20px 10px;
+    font-size: 15px;
+    text-align: center;
+}
+/*---------------------------------------------------------*/
