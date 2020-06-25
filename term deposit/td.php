@@ -86,7 +86,7 @@
                 </thead>
 
                 <tbody>
-                <tr>
+                <!--<tr>
                     <td>2765</td>
                     <td>20000</td>
                     <td>2</td>
@@ -103,8 +103,24 @@
                     <td>10000</td>
                     <td>1</td>
                     <td>17/05/2020</td>
-                </tr>
-                <tbody>
+                </tr> -->
+                <?php 
+					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+					$sql="select * FROM td";
+					$query=$pdo->query($sql);
+					foreach($pdo->query($sql) as $row){
+						?>
+						<tr>
+							<td> <?php echo $row['td_id']; ?></td>
+                            <td> <?php echo $row['amount']; ?></td>
+                            <td> <?php echo $row['tenure']; ?></td>
+                            <td> <?php echo $row['creation_date']; ?></td>
+						</tr>
+						<?php
+					}
+				?>
+                </tbody>
             </table>
         </div>
         <!------------------------------------------->
@@ -117,9 +133,20 @@
             <label for="slct" class="label-field">Term Deposit to manage</label> 
             <select name="slct" class="slct" id="slct">
               <option selected disabled>Select TD</option>
-              <option value="1">2765</option>
+              <!--<option value="1">2765</option>
               <option value="2">6932</option>
-              <option value="3">8239</option>
+              <option value="3">8239</option>-->
+
+              <?php
+	                $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+                    $sql="select td_id FROM td";
+                    $query=$pdo->query($sql);
+	                foreach ($pdo->query($sql) as $row)//Array or records stored in $row
+		            {
+			            echo "<option value=$row[td_id]>$row[td_id]</option>"; 
+		            }
+	         ?>
             </select>
           </div>
         <!------------------------------------------>
