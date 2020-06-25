@@ -1,0 +1,248 @@
+html {
+    font-size: 16px; 
+    font-family: "Open Sans", sans-serif;
+    /*background-color: #00539F;*/
+}
+
+body {
+    margin: 0 auto;
+    background-image: url('../images/abs.jpg');
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /*display: block;*/
+    /*max-width: 100%;
+    height: 20%;*/
+}
+
+/* Add a box container for all body elements */
+.super-container {
+    max-width: 70%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/*NAVBAR: -----------------------------------------------*/
+/* Add a black background to the top navigation */
+
+.topnav {  
+    background-image: url('../images/nav.jpg');
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+  }
+
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: right;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover{
+    background-color:rgba(26, 209, 234, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+    transition-duration: 0.6s;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: rgba(19, 57, 114, 0.9);
+    color: rgb(255, 255, 255);
+  }
+/*---------------------------------------------------------*/
+
+/* INTRO: -------------------------------------------------*/
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  height: 350px;
+}
+
+.information {
+    font-size:1.2vw;
+    font-weight: 900;
+    text-align: left;
+    margin: 0px 0px 15px 0px;
+    padding: 6px;    
+    color: rgba(34, 34, 34,0.8);
+
+    position: absolute;
+    top: 40%;
+    left: 47%;
+    transform: translate( -50%, -50% );
+    
+}
+/*---------------------------------------------------------*/
+
+/* H1: ----------------------------------------------------*/
+/* Style H1 wrappers */
+.block1 {
+    background-color: rgba(0, 50, 107,0.9);
+}
+
+.block2 {
+    background-color: rgba(207, 216, 211,0.9);
+}
+
+/* Style H1 elements */
+h1.A {
+    font-size:2.5vw;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+    padding: 6px;    
+    color: rgba(255,255,255, 0.6);
+    /*text-shadow: 3px 3px 1px black;*/
+}
+h1.B {
+    font-size:2.5vw;
+    text-align: center;
+    margin: 40px auto;
+    padding: 6px 0;    
+    color: rgba(0, 50, 107,0.9);
+    /*text-shadow: 3px 3px 1px black;*/
+}
+/*---------------------------------------------------------*/
+
+/*LABEL & INPUT: ------------------------------------------*/
+/* Label and input field wrapper */
+.flex-container2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+/* Focus selected input field */
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+/* Style input fields */
+#amount {
+    /*position: relative;
+    top: 50px;
+    left: 350px;*/
+    border: 1px solid rgba(26, 209, 234, 0.9);
+    padding: 6px 0;
+    width: 160px;
+    color: rgba(27, 27, 27, 0.8);
+    margin:20px auto;
+    font-size: 15px;
+}
+
+#ann {
+    /*position: relative;
+    top: 50px;
+    left: 350px;*/
+    border: 1px solid rgba(26, 209, 234, 0.9);
+    padding: 6px 0;
+    width: 160px;
+    color: rgba(27, 27, 27, 0.8); 
+    margin:20px 10px;
+    font-size: 15px;
+}
+
+#installment {
+  /*position: relative;
+  top: 50px;
+  left: 350px;*/
+  border: 1px solid rgba(26, 209, 234, 0.9);
+  padding: 6px 0;
+  width: 160px;
+  color: rgba(27, 27, 27, 0.8); 
+  margin:20px 10px;
+  font-size: 15px;
+}
+
+/* Style input labels */
+.label-field {
+    /*position: relative;
+    top: 50px;
+    left: 350px;*/
+    font-size: 22px;
+    margin: 5px 10px 5px 20px;
+    color: rgba(12, 12, 12, 0.9);
+}
+/*---------------------------------------------------------*/
+
+/* BUTTONS: -----------------------------------------------*/
+/* Buttons wrapper */
+.flex-container3 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button1 {
+    /*position: relative;
+    left: 1000px;
+    bottom: 110px;*/
+    background-color: white;
+    color: black;
+    border: 2px solid rgba(26, 209, 234, 0.9);
+  }
+
+  .button1:hover {
+    background-color: rgba(26, 209, 234, 0.9);
+    color: white;
+  }
+
+  .button2 {
+    /*position: relative;
+    left: 800px;
+    bottom: 30px;*/
+    border-radius: 30px;
+    background-color: white;
+    color: black;
+    border: 5px solid rgba(0, 50, 107,0.9);
+  }
+
+  .button2:hover {
+    background-color: rgba(0, 50, 107,0.9);
+    color: white;
+  }
+/*---------------------------------------------------------*/
+
+/* DISPLAY LOAN: ------------------------------------------*/
+.flex-container4 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  
+}
+
+.display-field {
+  border: 1px solid rgba(26, 209, 234, 0.9);
+    padding: 6px 0;
+    width: 160px;
+    color: rgba(27, 27, 27, 0.8); 
+    margin:20px 10px;
+    font-size: 15px;
+    text-align: center;
+}
+/*---------------------------------------------------------*/
