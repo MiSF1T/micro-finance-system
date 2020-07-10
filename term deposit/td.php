@@ -6,17 +6,34 @@
 
     <title>Term Deposit</title>
  
-    <link href="styles/style.css" rel="stylesheet"> 
+    <link href="styles/style.css?v=<?php echo time(); ?>" rel="stylesheet"> 
   </head>
 
   <body>
     <!-- NAVIGATION BAR---------------------------->
-    <div class="topnav">
+    <!--<div class="topnav">
         <a href="#logout">Logout</a>
         <a href="#loan">Loan</a>
         <a class="active" href="#term-dep">Term Deposit</a>
         <a href="#transactions">Transaction</a>
         <a href="#home">Home</a>
+    </div>-->
+    <div class="menu_bar">
+            <ul>
+                <li><a href="#">Home</a></li>
+               <li><a href="#">Transaction</a>
+                    <div class="sub_menu">
+                        <ul>
+                            <li><a href="#">Create</a></li>
+                            <li><a href="#">View</a></li>
+                        </ul>
+                    </div>
+               </li>
+               <li class="active"><a href="#">Term Deposit</a></li>
+               <li><a href="#">Loan</a></li>
+               <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
+               <li><a href="#">About Us</a></li>
+             </ul>
     </div>
     <!---------------------------------------------->
 
@@ -58,13 +75,13 @@
 
         <!--Container for buttons-------------------->
         <div class="flex-container3">
-            <button type="button" name="info" class="button button1">VIEW INTEREST RATES</button>
-            <button type="button" name="create" class="button button2">CREATE</button>
+            <button type="button" name="info" id="info" class="button button1">VIEW INTEREST RATES</button>
+            <button type="button" name="create" class="button button2" onclick="location.href='create_td.php?amount='+ document.getElementById('amount').value+'&slct1='+ document.getElementById('slct1').value;">
+            CREATE</button>
+            <!--<button type="button" name="create" class="button button2" onclick="alert('Term deposit successfully created.')">
+            <a href='create_td.php?amount='+ document.getElementById('amount').value+'&slct1='+ document.getElementById('slct1').value;>
+            CREATE</a></button>-->
         </div>
-        <!-------------------------------------------> 
-
-        <!--MODAL POPUP------------------------------>
-
         <!-------------------------------------------> 
 
         <!--View TD block---------------------------->
@@ -82,28 +99,12 @@
                     <th>AMOUNT</th>
                     <th>TENURE(years)</th>
                     <th>CREATION DATE</th>
+                    <th>BREAK</th>
+                    <th>RENEW</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <!--<tr>
-                    <td>2765</td>
-                    <td>20000</td>
-                    <td>2</td>
-                    <td>20/01/2020</td>
-                </tr>
-                <tr>
-                    <td>6932</td>
-                    <td>10000</td>
-                    <td>1</td>
-                    <td>9/04/2020</td>
-                </tr>
-                <tr>
-                    <td>8239</td>
-                    <td>10000</td>
-                    <td>1</td>
-                    <td>17/05/2020</td>
-                </tr> -->
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
 
@@ -116,6 +117,8 @@
                             <td> <?php echo $row['amount']; ?></td>
                             <td> <?php echo $row['tenure']; ?></td>
                             <td> <?php echo $row['creation_date']; ?></td>
+                            <td><button class="button3" onclick="alert('Selected term deposit has been broken.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
+                            <td><button class="button4" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
 						</tr>
 						<?php
 					}
@@ -126,17 +129,13 @@
         <!------------------------------------------->
 
         <!--Manage TD block------------------------->
-        <div class="block1">
+        <!--<div class="block1">
             <h1 class="A">Manage Term Deposit</h1>
         </div>  
         <div class="select">
             <label for="slct" class="label-field">Term Deposit to manage</label> 
             <select name="slct" class="slct" id="slct">
               <option selected disabled>Select TD</option>
-              <!--<option value="1">2765</option>
-              <option value="2">6932</option>
-              <option value="3">8239</option>-->
-
               <?php
 	                $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
 
@@ -149,15 +148,55 @@
 	         ?>
             </select>
           </div>
-        <!------------------------------------------>
+        
         <div class="flex-container3">
             <button type="button" name="info" class="button button2">BREAK</button>
             
             <button type="button" name="create" class="button button2">RENEW</button>
         </div>
+        <!------------------------------------------>
         <div class="block3"></div>
     </div> 
 
+    <!--MODAL OVERLAY------------------------------>
+        <div id="overlay" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h3>Interest Rates</h3>
+            </div>
+            
+            <!--interest rates -->
+            <div class="table-wrapper1">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>TENURE (years)</th>
+                    <th>RATE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php 
+					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+					$sql="select tenure,rate FROM interests where type='td'";
+					$query=$pdo->query($sql);
+					foreach($pdo->query($sql) as $row){
+						?>
+						<tr>
+                            <td> <?php echo $row['tenure']; ?></td>
+                            <td> <?php echo $row['rate']; ?>%</td>
+						</tr>
+						<?php
+					}
+				?>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    <!-------------------------------------------> 
     <script src="scripts/main.js"></script>
     </body>
   </html>

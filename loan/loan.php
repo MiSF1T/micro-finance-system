@@ -6,7 +6,7 @@
 
     <title>Loan</title>
  
-    <link href="styles/style.css" rel="stylesheet"> 
+    <link href="styles/style.css?v=<?php echo time(); ?>" rel="stylesheet"> 
   </head>
 
   <body>
@@ -19,21 +19,21 @@
         <a href="#home">Home</a>
     </div>-->
     <div class="menu_bar">
-        <ul>
-            <li><a href="#">Home</a></li>
-           <li><a href="#">Transaction</a>
-                <div class="sub_menu">
-                    <ul>
-                        <li><a href="#">Create</a></li>
-                        <li><a href="#">View</a></li>
-                    </ul>
-                </div>
-           </li>
-           <li><a href="#">Term Deposit</a></li>
-           <li class="active"><a href="#">Loan</a></li>
-           <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
-           <li><a href="#">About Us</a></li>
-         </ul>
+            <ul>
+                <li><a href="#">Home</a></li>
+               <li><a href="#">Transaction</a>
+                    <div class="sub_menu">
+                        <ul>
+                            <li><a href="#">Create</a></li>
+                            <li><a href="#">View</a></li>
+                        </ul>
+                    </div>
+               </li>
+               <li><a href="#">Term Deposit</a></li>
+               <li class="active"><a href="#">Loan</a></li>
+               <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
+               <li><a href="#">About Us</a></li>
+             </ul>
     </div>
     <!---------------------------------------------->
 
@@ -41,7 +41,8 @@
     <div class="super-container">
         <!--Intro Image and desc-------------------->
         <div class="intro">
-            <img src="images/loan.jpg" alt="Loan Description">
+            <img src="images/loan3.jpg" alt="Loan Description">
+            <h1 class="img-head">LOAN</h1>
             <p class="information">You can request for loan by specifying amount, annual income
                 and the number of installments. Previous loans must be cleared to avail new loan.
                 You also have to be a member for at least a year to avail loan services.
@@ -68,7 +69,12 @@
             </div>
             <div class="installment">
                 <label for="installment" class="label-field">Installments</label>
-                <input type="number" class="input-field" name="installment" id="installment"> 
+                    <select name="slct1" class="slct1" id="slct1">
+                      <option selected disabled>---</option>
+                      <option value="6">6</option>
+                      <option value="12">12</option>
+                      <option value="24">24</option>
+                    </select>
             </div>
         </div>
         <!------------------------------------------->
@@ -76,43 +82,48 @@
         <!--Container for buttons-------------------->
         <div class="flex-container3">
             <button type="button" name="info" id="info" class="button button1">VIEW INSTALLMENTS</button>
-            
-            <button type="button" name="create" class="button button2">SUBMIT FOR REVIEW</button>
+            <button type="button" name="create" class="button button2" onclick="location.href='create_loan.php?amount='+ document.getElementById('amount').value+'&ann='+ document.getElementById('ann').value+'&slct1='+ document.getElementById('slct1').value;">
+            SUBMIT FOR REVIEW</a></button>
         </div>
         <!-------------------------------------------> 
-
+        
         <!--View TD block---------------------------->
         <div class="block2">
             <h1 class="B">Active Loan</h1>
         </div>
         <!------------------------------------------->
-        
+       
         <!--Active Loan------------------------------>
-        <div class="flex-container4 ">
-            <div class="display">
-                <label  class="label-field">Loan ID
-                    <input type="number" id="loan-id" class="display-field" disabled>
-                </label>
+        <form class="output-group">
+            <div class="flex-container4 ">
+                <div class="display">
+                    <label  class="label-field">Loan ID
+                        <input type="number" id="loan-id" class="display-field" disabled>
+                    </label>
+                </div>
+                <div class="display">
+                    <label  class="label-field">Amount
+                        <input type="number" id="amount" class="display-field" disabled>
+                    </label>
+                </div>
+                <div class="display">
+                    <label  class="label-field">Installments
+                        <input type="number" id="inst" class="display-field" disabled>
+                    </label>
+                </div>
+                <div class="display">
+                    <label  class="label-field">Creation Date
+                        <input type="date" id="creation-date" class="display-field" disabled>
+                    </label>
+                </div>
             </div>
-            <div class="display">
-                <label  class="label-field">Amount
-                    <input type="number" id="amount" class="display-field" disabled>
-                </label>
-            </div>
-            <div class="display">
-                <label  class="label-field">Installments
-                    <input type="number" id="inst" class="display-field" disabled>
-                </label>
-            </div>
-            <div class="display">
-                <label  class="label-field">Creation Date
-                    <input type="date" id="creation-date" class="display-field" disabled>
-                </label>
-            </div>
-            <div class="block3"></div>
-        </div>
+            <button type="button" name="info" id="info" class="button button2">REPAY LOAN AT ONCE</button>
+        </form>
+        <!--Bottom border block-->
+        <div class="block3"></div>
+    </div> 
 
-        <!-- MODAL OVERLAY ------------------------------>
+    <!-- MODAL OVERLAY ------------------------------>
     <div id="overlay" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -132,17 +143,26 @@
                 </thead>
 
                 <tbody>
+                <?php 
+					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+					$sql="select tenure,rate FROM interests where type='loan'";
+					$query=$pdo->query($sql);
+					foreach($pdo->query($sql) as $row){
+						?>
 						<tr>
-                            <td> 6 </td>
-                            <td> 5%</td>
+                            <td> <?php echo $row['tenure']; ?> </td>
+                            <td> <?php echo $row['rate']; ?></td>
 						</tr>
+						<?php
+					}
+				?>
                 </tbody>
             </table>
             </div>
         </div>
     </div>
-        <!---------------------------------------------->
-        <script src="scripts/main.js"></script>
-    </div> 
+    <!---------------------------------------------->
+    <script src="scripts/main.js"></script>
     </body>
-  </html>
+</html>

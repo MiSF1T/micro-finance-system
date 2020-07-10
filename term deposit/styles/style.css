@@ -30,15 +30,14 @@ body {
 
 /*NAVBAR: -----------------------------------------------*/
 /* Add a black background to the top navigation */
-
-.topnav {  
+/*.topnav {  
     background-image: url('../images/nav.jpg');
     background-color: rgba(1, 152, 117, 1);
     overflow: hidden;
   }
 
   /* Style the links inside the navigation bar */
-  .topnav a {
+ /* .topnav a {
     float: right;
     color: rgb(255, 255, 255);
     text-align: center;
@@ -48,17 +47,88 @@ body {
   }
   
   /* Change the color of links on hover */
-  .topnav a:hover{
+  /*.topnav a:hover{
     background-color:rgba(46, 204, 113, 1);
     color: rgba(255, 255, 255, 0.9);
     transition-duration: 0.6s;
   }
   
   /* Add a color to the active/current link */
-  .topnav a.active {
+  /*.topnav a.active {
     background-color: rgba(1, 152, 117, 1);
     color: rgb(255, 255, 255);
-  }
+  }*/
+
+  .menu_bar{
+    background: rgb(0,0,0);
+    text-align: right;
+    z-index: 3;
+}
+.menu_bar ul{
+    display: inline-flex;
+    list-style: none;
+    color: #fff;
+    text-align: center;
+}
+.menu_bar ul li{
+    width: auto;
+    margin: 22px;
+    padding: 15px;
+    transition: 0.2s;
+}
+.menu_bar ul li a{
+    text-decoration: none;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.active, .menu_bar ul li:hover{
+   /* background: #2bab0d;*/
+    content: '';
+    border-bottom-width: 0%;
+    border-bottom: 4px solid #fff;
+    transition: 0.3s;
+}
+
+.menu_bar ul li:hover{
+    /* background: #2bab0d;*/
+     content: '';
+     border-bottom-width: 100%;
+     border-bottom: 4px solid #fff;
+     transition: 0.3s;
+ }
+
+.sub_menu{
+    display: none;
+    z-index: 3;
+
+}
+.menu_bar ul li:hover .sub_menu{
+    display: block;
+    position: absolute;
+    background: rgb(0,0,0);
+    margin-top: 15px;
+    margin-left: -15px;
+}
+.menu_bar ul li:hover .sub_menu ul{
+    display: block;
+    margin: 10px;
+}
+.menu_bar ul li:hover .sub_menu ul li{
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px dotted #fff;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+.menu_bar ul li:hover .sub_menu ul li:last-child{
+    border-bottom: none;
+}
+.menu_bar ul li:hover .sub_menu ul li :hover
+{
+    font-style: italic;
+}
 /*---------------------------------------------------------*/
 
 /* INTRO: -------------------------------------------------*/
@@ -71,9 +141,9 @@ img {
 }
 
 .img-head {
-    font-size:5vw;
+    font-size:4.5vw;
     font-weight: 900;
-    text-align: center;
+    text-align: left;
     margin: 0px 0px 15px 0px;
     padding: 6px;    
     color: rgba(255,255,255, 0.9);
@@ -81,8 +151,8 @@ img {
     -webkit-text-stroke-color: rgba(1, 152, 117, 1);
 
     position: absolute;
-    top: 15%;
-    left: 50%;
+    top: 25%;
+    left: 39%;
     transform: translate( -50%, -50% );
 }
 
@@ -95,8 +165,8 @@ img {
     color: rgba(34, 34, 34,0.8);
 
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 40%;
+    left: 49%;
     transform: translate( -50%, -50% );
     -webkit-text-stroke-width: 1px; 
     -webkit-text-stroke-color: rgba(34, 34, 34,0.8);
@@ -130,6 +200,10 @@ h1.B {
     padding: 6px 0;    
     color: rgba(1, 152, 117, 1);
     /*text-shadow: 3px 3px 1px black;*/
+}
+/* Style H3 elements */
+h3 {
+  text-align: center;
 }
 /*---------------------------------------------------------*/
 
@@ -208,9 +282,6 @@ h1.B {
   }
 
   .button1 {
-    /*position: relative;
-    left: 1000px;
-    bottom: 110px;*/
     background-color: white;
     color: black;
     border: 2px solid rgba(46, 204, 113, 1);
@@ -222,27 +293,65 @@ h1.B {
   }
 
   .button2 {
-    /*position: relative;
-    left: 800px;
-    bottom: 30px;*/
     border-radius: 30px;
     background-color: white;
     color: black;
     border: 5px solid rgba(1, 152, 117, 1);
+    letter-spacing: 1px;
   }
 
   .button2:hover {
     background-color: rgba(1, 152, 117, 1);
     color: white;
   }
+
+  .button3 {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    background-color: white;
+    color: black;
+    border: 1px solid rgb(204, 64, 46);
+  }
+
+  .button3:hover {
+    background-color: rgb(204, 64, 46);;
+    color: white;
+  }
+
+  .button4 {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    background-color: white;
+    color: black;
+    border: 1px solid rgba(1, 152, 117, 1);
+  }
+
+  .button4:hover {
+    background-color: rgba(1, 152, 117, 1);
+    color: white;
+  }
 /*---------------------------------------------------------*/
 
-  /*TABLE: ----------------------------------------------*/
+/*TABLE: -------------------------------------------------*/
 .table-wrapper{
   margin: 10px 70px 70px;
   box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
 }
-
+.table-wrapper1{
+  box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
 .fl-table {
   border-radius: 5px;
   font-size: 16px;
@@ -345,63 +454,28 @@ h1.B {
       text-align: center;
   }
 }
+/* Style links in buttons*/
+a:link {
+  text-decoration: none;
+  color: rgba(12, 12, 12, 0.9);
+}
+
+a:visited {
+  text-decoration: none;
+  color: rgba(12, 12, 12, 0.9);
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgba(12, 12, 12, 0.9)
+}
+
+a:active {
+  text-decoration: none;
+  color: rgba(12, 12, 12, 0.9)
+}
 /*---------------------------------------------------------*/
 
-/*DROP-DOWN: ----------------------------------------------*/
-/*
-/* Reset Select *//*
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0 !important;
-  background: #2c3e50;
-  background-image: none;
-}
-/* Remove IE arrow *//*
-select::-ms-expand {
-  display: none;
-}
-/* Custom Select *//*
-.select {
-  position: relative;
-  display: flex;
-  width: 20em;
-  height: 3em;
-  line-height: 4;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: .25em;
-  font-size: 20px;
-}
-select {
-  flex: 1;
-  padding: 0 .5em;
-  color: #fff;
-  cursor: pointer;
-}
-/* Arrow *//*
-.select::after {
-  content: '\25BC';
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 1em;
-  background: #34495e;
-  cursor: pointer;
-  pointer-events: none;
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
-}
-/* Transition *//*
-.select:hover::after {
-  color: #f39c12;
-}
-*/
 .slct {
     border: 1px solid #000;
     width: 220px;
@@ -425,5 +499,62 @@ select {
   height: 50px;
   position: relative;
   top: 30px;
+}
+/*---------------------------------------------------------*/
+
+/*MODAL OVERLAY-------------------------------------------*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+/* Modal header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: rgba(12, 12, 12, 0.9);
+  color: white;
+}
+/* Modal Content/Box */
+.modal-content {
+  
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto;       /* 10% from the top and centered */
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;            /* Could be more or less, depending on screen size */
+  max-width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
 }
 /*---------------------------------------------------------*/
