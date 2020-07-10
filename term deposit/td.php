@@ -117,7 +117,7 @@
                             <td> ₹<?php echo $row['amount']; ?></td>
                             <td> <?php echo $row['tenure']; ?></td>
                             <td> <?php echo $row['creation_date']; ?></td>
-                            <td><button class="button3" onclick="alert('Selected term deposit has been broken.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
+                            <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
                             <td><button class="button4" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
 						</tr>
 						<?php

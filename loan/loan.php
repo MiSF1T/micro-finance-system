@@ -4,6 +4,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql=$db->prepare("select * FROM loan LIMIT 1");
 $sql->execute(); 
+$count = $sql->rowCount();
 $row = $sql->fetch();
 ?>
 
@@ -91,7 +92,7 @@ $row = $sql->fetch();
         <!--Container for buttons-------------------->
         <div class="flex-container3">
             <button type="button" name="info" id="info" class="button button1">VIEW INSTALLMENTS</button>
-            <button type="button" name="create" class="button button2" onclick="location.href='create_loan.php?amount='+ document.getElementById('amount').value+'&ann='+ document.getElementById('ann').value+'&slct1='+ document.getElementById('slct1').value;">
+            <button type="button" name="create" id="create" class="button button2" onclick="location.href='create_loan.php?amount='+ document.getElementById('amount').value+'&ann='+ document.getElementById('ann').value+'&slct1='+ document.getElementById('slct1').value;">
             SUBMIT FOR REVIEW</a></button>
         </div>
         <!-------------------------------------------> 
@@ -103,7 +104,13 @@ $row = $sql->fetch();
         <!------------------------------------------->
        
         <!--Active Loan------------------------------>
-        <form class="output-group">
+        <!--IF no active loan-->
+        <div class="noLoan" id="noLoan" style="visibility:hidden">
+            <img class="icon" src="images/icon.png" alt="icon">
+            <h3 class="n">No active loan for this account.<h3>
+        </div>
+        <!--IF active loan exists-->
+        <form class="output-group" id="output">
             <div class="flex-container4 ">
                 <div class="display">
                     <label  class="label-field">Loan ID
@@ -126,7 +133,7 @@ $row = $sql->fetch();
                     </label>
                 </div>
             </div>
-            <button type="button" name="info" id="info" class="button button2">REPAY LOAN AT ONCE</button>
+            <button type="button" name="repay" id="repay" class="button button2">REPAY LOAN AT ONCE</button>
         </form>
         <!--Bottom border block-->
         <div class="block3"></div>
@@ -172,6 +179,21 @@ $row = $sql->fetch();
         </div>
     </div>
     <!---------------------------------------------->
+    <script>
+        var check = "<?php echo $count; ?>";
+        if(check == 0)
+        {
+            document.getElementById("noLoan").style.visibility = "visible";
+            document.getElementById("output").style.display = "none";
+        }
+        else if(check == 1)
+        {
+            document.getElementById("noLoan").style.display = "none";
+            document.getElementById("create").disabled = true;
+            document.getElementById("create").classList.add('button2d');
+            document.getElementById("create").classList.remove('button2');
+        }
+    </script>
     <script src="scripts/main.js"></script>
     </body>
 </html>
