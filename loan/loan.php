@@ -1,3 +1,12 @@
+<?php
+$db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sql=$db->prepare("select * FROM loan LIMIT 1");
+$sql->execute(); 
+$row = $sql->fetch();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -61,11 +70,11 @@
         <div class="flex-container2">
             <div class="amount">
                 <label for="amount" class="label-field">Amount</label>
-                <input type="number" class="input-field" name="amount" id="amount"> 
+                <input type="number" class="input-field" name="amount" id="amount" placeholder="₹"> 
             </div>
             <div class="ann">
                 <label for="ann" class="label-field">Annual Income</label>
-                <input type="number" class="input-field" name="ann" id="ann"> 
+                <input type="number" class="input-field" name="ann" id="ann" placeholder="₹"> 
             </div>
             <div class="installment">
                 <label for="installment" class="label-field">Installments</label>
@@ -98,22 +107,22 @@
             <div class="flex-container4 ">
                 <div class="display">
                     <label  class="label-field">Loan ID
-                        <input type="number" id="loan-id" class="display-field" disabled>
+                        <input type="number" id="loan-id" class="display-field" value="<?php echo $row['loan_id']; ?>" disabled>
                     </label>
                 </div>
                 <div class="display">
                     <label  class="label-field">Amount
-                        <input type="number" id="amount" class="display-field" disabled>
+                        <input type="number" id="amount" class="display-field" value="<?php echo $row['amount']; ?>" disabled>
                     </label>
                 </div>
                 <div class="display">
                     <label  class="label-field">Installments
-                        <input type="number" id="inst" class="display-field" disabled>
+                        <input type="number" id="inst" class="display-field" value="<?php echo $row['installments']; ?>" disabled>
                     </label>
                 </div>
                 <div class="display">
                     <label  class="label-field">Creation Date
-                        <input type="date" id="creation-date" class="display-field" disabled>
+                        <input type="date" id="creation-date" class="display-field" value="<?php echo $row['creation_date']; ?>" disabled>
                     </label>
                 </div>
             </div>
@@ -152,7 +161,7 @@
 						?>
 						<tr>
                             <td> <?php echo $row['tenure']; ?> </td>
-                            <td> <?php echo $row['rate']; ?></td>
+                            <td> <?php echo $row['rate']; ?>%</td>
 						</tr>
 						<?php
 					}

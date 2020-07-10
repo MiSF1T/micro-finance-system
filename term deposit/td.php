@@ -59,7 +59,7 @@
         <div class="flex-container2">
             <div class="amount">
                 <label for="amount" class="label-field">Amount</label>
-                <input type="number" class="input-field" name="amount" id="amount"> 
+                <input type="number" class="input-field" name="amount" id="amount" placeholder="₹"> 
             </div>
             <div class="tenure">
                 <label for="tenure" class="label-field">Tenure</label>
@@ -114,7 +114,7 @@
 						?>
 						<tr>
 							<td> <?php echo $row['td_id']; ?></td>
-                            <td> <?php echo $row['amount']; ?></td>
+                            <td> ₹<?php echo $row['amount']; ?></td>
                             <td> <?php echo $row['tenure']; ?></td>
                             <td> <?php echo $row['creation_date']; ?></td>
                             <td><button class="button3" onclick="alert('Selected term deposit has been broken.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>

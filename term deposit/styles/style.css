@@ -152,7 +152,7 @@ img {
 
     position: absolute;
     top: 25%;
-    left: 39%;
+    left: 64%;
     transform: translate( -50%, -50% );
 }
 
@@ -163,10 +163,11 @@ img {
     margin: 0px 0px 15px 0px;
     padding: 6px;    
     color: rgba(34, 34, 34,0.8);
+    text-align: right;
 
     position: absolute;
     top: 40%;
-    left: 49%;
+    left: 60%;
     transform: translate( -50%, -50% );
     -webkit-text-stroke-width: 1px; 
     -webkit-text-stroke-color: rgba(34, 34, 34,0.8);
