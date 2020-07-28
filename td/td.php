@@ -1,14 +1,5 @@
 <?php session_start();
-
-$db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$sql=$db->prepare("select * FROM td where account_no= '".$_SESSION["account_no"]."'");
-//$sql=$db->prepare("select * FROM loan LIMIT 1");
-$sql->execute(); 
-$count = $sql->rowCount();
-$row = $sql->fetch();
-
+    $date = date('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +26,7 @@ $row = $sql->fetch();
                </li>
                <li class="active"><a href="#">Term Deposit</a></li>
                <li><a href="../loan/loan.php">Loan</a></li>
-               <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
+               <li><a href="../login.html">Logout</a></li>
                <li><a href="#">About Us</a></li>
              </ul>
     </div>
@@ -48,7 +39,8 @@ $row = $sql->fetch();
             <img src="images/term.jpg" alt="Term Deposit Description">
             <h1 class="img-head">TERM DEPOSIT</h1>
             <p class="information">You can create term deposit by specifying amount and tenure.
-                Currently active term deposits are displayed in the table.
+                Currently active term deposits are displayed in the table. Note: Renew is only
+                shown for matured term deposits.
             </p>
         </div>
         <!------------------------------------------>
@@ -119,9 +111,10 @@ $row = $sql->fetch();
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
 
-					$sql="select * FROM td";
+					$sql="select * FROM td where account_no= '".$_SESSION["account_no"]."'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
+                        $exp = date('Y-m-d', strtotime($row['creation_date']. "+ {$row['tenure']} years"));
 						?>
 						<tr>
 							<td> <?php echo $row['td_id']; ?></td>
@@ -129,9 +122,15 @@ $row = $sql->fetch();
                             <td> <?php echo $row['tenure']; ?></td>
                             <td> <?php echo $row['creation_date']; ?></td>
                             <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
+                            
+                            <?php if($date == $exp)
+                            {?>
                             <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
-						</tr>
+                            <?php } ?> 
+
+                        </tr>
 						<?php
+
 					}
 				?>
                 </tbody>
