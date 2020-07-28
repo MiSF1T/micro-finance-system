@@ -7,9 +7,15 @@ var btn = document.getElementById("info");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+function update()
+{
+  document.getElementById("print").innerHTML = document.getElementById("amount").value;
+}
+
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
+  update();
 }
 
 // When the user clicks on <span> (x), close the modal

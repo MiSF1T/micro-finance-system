@@ -1,3 +1,15 @@
+<?php session_start();
+
+$db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sql=$db->prepare("select * FROM td where account_no= '".$_SESSION["account_no"]."'");
+//$sql=$db->prepare("select * FROM loan LIMIT 1");
+$sql->execute(); 
+$count = $sql->rowCount();
+$row = $sql->fetch();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,14 +22,6 @@
   </head>
 
   <body>
-    <!-- NAVIGATION BAR---------------------------->
-    <!--<div class="topnav">
-        <a href="#logout">Logout</a>
-        <a href="#loan">Loan</a>
-        <a class="active" href="#term-dep">Term Deposit</a>
-        <a href="#transactions">Transaction</a>
-        <a href="#home">Home</a>
-    </div>-->
     <div class="menu_bar">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -30,7 +34,7 @@
                     </div>
                </li>
                <li class="active"><a href="#">Term Deposit</a></li>
-               <li><a href="#">Loan</a></li>
+               <li><a href="../loan/loan.php">Loan</a></li>
                <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
                <li><a href="#">About Us</a></li>
              </ul>
@@ -65,9 +69,16 @@
                 <label for="tenure" class="label-field">Tenure</label>
                     <select name="slct1" class="slct1" id="slct1">
                       <option selected disabled>---</option>
-                      <option value="1">1 Year</option>
-                      <option value="2">2 Years</option>
-                      <option value="3">3 Years</option>
+                        <?php
+	                    $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+                        $sql="SELECT tenure FROM interests WHERE type='td'";
+                        $query=$pdo->query($sql);
+	                    foreach ($pdo->query($sql) as $row)//Array or records stored in $row
+		                {
+			                echo "<option value=$row[tenure]>$row[tenure] Year(s)</option>"; 
+		                }
+	                    ?>
                     </select>
             </div>
         </div>
@@ -118,7 +129,7 @@
                             <td> <?php echo $row['tenure']; ?></td>
                             <td> <?php echo $row['creation_date']; ?></td>
                             <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
-                            <td><button class="button4" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
+                            <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
 						</tr>
 						<?php
 					}

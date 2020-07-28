@@ -60,7 +60,7 @@
         <div class="flex-container2">
             <div class="amount">
                 <label for="amount" class="label-field">Amount</label>
-                <input type="number" class="input-field" name="amount" id="amount"> 
+                <input type="number" class="input-field" name="amount" id="amount" value="0"> 
             </div>
             <div class="ann">
                 <label for="ann" class="label-field">Annual Income</label>
@@ -72,6 +72,10 @@
             </div>
         </div>
         <!------------------------------------------->
+        <script>
+            var loanAmount = document.getElementById("amount").value;
+            
+        </script>
 
         <!--Container for buttons-------------------->
         <div class="flex-container3">
@@ -96,7 +100,7 @@
             </div>
             <div class="display">
                 <label  class="label-field">Amount
-                    <input type="number" id="amount" class="display-field" disabled>
+                    <input type="number" id="amt" class="display-field" disabled>
                 </label>
             </div>
             <div class="display">
@@ -134,7 +138,8 @@
                 <tbody>
 						<tr>
                             <td> 6 </td>
-                            <td> 5%</td>
+                            <td id="print"></td>
+                            <script>document.getElementById("print").innerHTML= loanAmount;</script>
 						</tr>
                 </tbody>
             </table>

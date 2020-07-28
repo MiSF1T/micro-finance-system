@@ -1,5 +1,6 @@
 <?php
-$amount = $_GET["amount"];
+session_start();
+$loan_amount = $_GET["amount"];
 $installments = $_GET["slct1"];
 $income= $_GET["ann"];
 $date = date('Y-m-d');
@@ -9,9 +10,15 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
 {
-	$queryStr = "INSERT INTO loan(amount,installments,income,creation_date) VALUES(?,?,?,?)";
+	$queryStr = "INSERT INTO loan(account_no,amount,installments,income,creation_date) VALUES(?,?,?,?,?)";
+	//$queryStr = "INSERT INTO loan(amount,installments,income,creation_date) VALUES(?,?,?,?)";
 	$query = $db->prepare($queryStr);
-	$query->execute([$amount,$installments,$income,$date]);
+	$query->execute([$_SESSION["account_no"],$loan_amount,$installments,$income,$date]);
+	//$query->execute([$loan_amount,$installments,$income,$date]);
+
+	$sql = $db->query("UPDATE account SET balance = balance + '" .$loan_amount. "' WHERE account_no= '".$_SESSION["account_no"]."'");
+	$sql->execute();
+
 }
 catch(PDOException $e)
 {

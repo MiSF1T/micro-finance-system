@@ -1,8 +1,11 @@
 <?php
+session_start();
+
 $db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql=$db->prepare("select * FROM loan LIMIT 1");
+$sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account_no"]."' LIMIT 1");
+//$sql=$db->prepare("select * FROM loan LIMIT 1");
 $sql->execute(); 
 $count = $sql->rowCount();
 $row = $sql->fetch();
@@ -20,14 +23,6 @@ $row = $sql->fetch();
   </head>
 
   <body>
-    <!-- NAVIGATION BAR---------------------------->
-    <!--<div class="topnav">
-        <a href="#logout">Logout</a>
-        <a class="active" href="#loan">Loan</a>
-        <a href="#term-dep">Term Deposit</a>
-        <a href="#transactions">Transaction</a>
-        <a href="#home">Home</a>
-    </div>-->
     <div class="menu_bar">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -39,7 +34,7 @@ $row = $sql->fetch();
                         </ul>
                     </div>
                </li>
-               <li><a href="#">Term Deposit</a></li>
+               <li><a href="../td/td.php">Term Deposit</a></li>
                <li class="active"><a href="#">Loan</a></li>
                <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
                <li><a href="#">About Us</a></li>
@@ -71,7 +66,7 @@ $row = $sql->fetch();
         <div class="flex-container2">
             <div class="amount">
                 <label for="amount" class="label-field">Amount</label>
-                <input type="number" class="input-field" name="amount" id="amount" placeholder="₹"> 
+                <input type="number" class="input-field" name="amount" id="amount" placeholder="₹" value="1"> 
             </div>
             <div class="ann">
                 <label for="ann" class="label-field">Annual Income</label>
@@ -81,13 +76,21 @@ $row = $sql->fetch();
                 <label for="installment" class="label-field">Installments</label>
                     <select name="slct1" class="slct1" id="slct1">
                       <option selected disabled>---</option>
-                      <option value="6">6</option>
-                      <option value="12">12</option>
-                      <option value="24">24</option>
+                        <?php
+	                    $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+
+                        $sql="SELECT tenure FROM interests WHERE type='loan'";
+                        $query=$pdo->query($sql);
+	                    foreach ($pdo->query($sql) as $row)//Array or records stored in $row
+		                {
+			            echo "<option value=$row[tenure]>$row[tenure]</option>"; 
+		                }
+	                    ?>
                     </select>
             </div>
         </div>
         <!------------------------------------------->
+        <script>var principal= parseFloat(document.getElementById("amount").value);</script>        <!-----SET PRINCIPAL AMOUNT---->
 
         <!--Container for buttons-------------------->
         <div class="flex-container3">
@@ -119,7 +122,7 @@ $row = $sql->fetch();
                 </div>
                 <div class="display">
                     <label  class="label-field">Amount
-                        <input type="number" id="amount" class="display-field" value="<?php echo $row['amount']; ?>" disabled>
+                        <input type="number" id="amount1" class="display-field" value="<?php echo $row['amount']; ?>" disabled>
                     </label>
                 </div>
                 <div class="display">
@@ -143,9 +146,11 @@ $row = $sql->fetch();
     <div id="overlay" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+            
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h3>Interest Rates</h3>
+                <p id="test"></p>
             </div>
             
             <!--interest rates -->
@@ -154,7 +159,7 @@ $row = $sql->fetch();
                 <thead>
                 <tr>
                     <th>INSTALLMENTS</th>
-                    <th>RATE</th>
+                    <th>EMI</th>
                 </tr>
                 </thead>
 
@@ -168,7 +173,13 @@ $row = $sql->fetch();
 						?>
 						<tr>
                             <td> <?php echo $row['tenure']; ?> </td>
-                            <td> <?php echo $row['rate']; ?>%</td>
+                            <td>
+                                <script>
+                                        var n=parseInt("<?php echo $row['tenure']; ?>");
+                                        var rate=parseFloat("<?php echo $row['rate']; ?>");
+                                        var emi = Math.round(principal * rate * ((rate+1)**n) / ((rate+1)**n - 1));
+                                </script>
+                            </td>
 						</tr>
 						<?php
 					}

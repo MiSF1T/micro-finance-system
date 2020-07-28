@@ -23,3 +23,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+/*
+//Get the renew button of every row marked by same id
+var btn1 = document.getElementById("renew");
+btn1.onclick = function() {
+  
+}*/
