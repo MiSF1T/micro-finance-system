@@ -9,7 +9,7 @@ function dateDiff ($d1, $d2) {
 $id = $_GET['id'];
 $date = date('Y-m-d');
 
-$db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
@@ -20,7 +20,7 @@ try
 	$rate = $row['rate'];
 
 	//Fetch selected TD details
-	$query = $db->query("SELECT * FROM td where account_no= '".$_SESSION["account_no"]."' AND td_id='". $id ."'");
+	$query = $db->query("SELECT * FROM td where account_no= '".$_SESSION["account"]."' AND td_id='". $id ."'");
     $row = $query->fetch();
 
     $tenure = $row['tenure'];
@@ -32,7 +32,7 @@ try
 	$td_amount = $amount*pow((1+($rate/100)), $remaining);
 
 	//update balance
-	$sql = $db->query("UPDATE account SET balance= balance + '" .$td_amount. "' WHERE account_no= '".$_SESSION["account_no"]."'");
+	$sql = $db->query("UPDATE account SET balance= balance + '" .$td_amount. "' WHERE account_no= '".$_SESSION["account"]."'");
 	$sql->execute();
 	
 	$queryStr = "DELETE FROM `td` WHERE `td_id`='". $id ."'";

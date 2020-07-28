@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-$db = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account_no"]."' LIMIT 1");
-//$sql=$db->prepare("select * FROM loan LIMIT 1");
+$sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account"]."' LIMIT 1");
 $sql->execute(); 
 $count = $sql->rowCount();
 $row = $sql->fetch();
@@ -25,18 +24,18 @@ $row = $sql->fetch();
   <body>
     <div class="menu_bar">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="../main_page/main.php">Home</a></li>
                <li><a href="#">Transaction</a>
                     <div class="sub_menu">
                         <ul>
-                            <li><a href="#">Create</a></li>
-                            <li><a href="#">View</a></li>
+                            <li><a href="../Create Transaction/Create_transaction.php">Create</a></li>
+                            <li><a href="../My Transactions/My_transactions.php">View</a></li>
                         </ul>
                     </div>
                </li>
                <li><a href="../td/td.php">Term Deposit</a></li>
-               <li class="active"><a href="#">Loan</a></li>
-               <li><a href="http://localhost/roll13/oms/login.html">Logout</a></li>
+               <li class="active"><a href="../loan/loan.php">Loan</a></li>
+               <li><a href="../logout_back.php">Logout</a></li>
                <li><a href="#">About Us</a></li>
              </ul>
     </div>
@@ -77,7 +76,7 @@ $row = $sql->fetch();
                     <select name="slct1" class="slct1" id="slct1">
                       <option selected disabled>---</option>
                         <?php
-	                    $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+	                    $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
                         $sql="SELECT tenure FROM interests WHERE type='loan'";
                         $query=$pdo->query($sql);
@@ -165,7 +164,7 @@ $row = $sql->fetch();
 
                 <tbody>
                 <?php 
-					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
 					$sql="select tenure,rate FROM interests where type='loan'";
 					$query=$pdo->query($sql);

@@ -8,19 +8,19 @@
 
         $date = date('Y-m-d');
 
-        $db = new PDO("mysql:host=localhost;dbname=omfs","root","");
+        $db = new PDO("mysql:host=localhost;dbname=mfs","root","");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $querySql = $db->query("SELECT * FROM interests WHERE Type = 'Loan' ");
         $row = $querySql->fetch();
         $r = $row['rate'];
         
-        $query = $db->query("SELECT * FROM loan where account_no= '".$_SESSION["account_no"]."'");
+        $query = $db->query("SELECT * FROM loan where account_no= '".$_SESSION["account"]."'");
         $row = $query->fetch();
 
-            $n = $row['Installments'];
-            $principal = $row['Loan_Amount'];
-            $id = $row['Loan_Id'];
+            $n = $row['installments'];
+            $principal = $row['amount'];
+            $id = $row['loan_id'];
             $rate = ($r/12) / 100 ;
 
             $difference = round(dateDiff($date,$row["creation_date"])/30);      //No. of months 
@@ -29,6 +29,6 @@
             $emi = round(( $principal * $rate * pow(( 1 + $rate), $n) / ( pow(( 1 + $rate), $n ) - 1 ) ));
             $emi = $emi * $remaining;
 
-            $sql = $db->query("UPDATE Account SET balance= balance - '" .$emi. "' WHERE account_no= '".$_SESSION["account_no"]."'");
+            $sql = $db->query("UPDATE Account SET balance= balance - '" .$emi. "' WHERE account_no= '".$_SESSION["account"]."'");
             $sql->execute();
 ?>

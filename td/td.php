@@ -15,18 +15,18 @@
   <body>
     <div class="menu_bar">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="../main_page/main.php">Home</a></li>
                <li><a href="#">Transaction</a>
                     <div class="sub_menu">
                         <ul>
-                            <li><a href="#">Create</a></li>
-                            <li><a href="#">View</a></li>
+                            <li><a href="../Create Transaction/Create_transaction.php">Create</a></li>
+                            <li><a href="../My Transactions/My_transactions.php">View</a></li>
                         </ul>
                     </div>
                </li>
-               <li class="active"><a href="#">Term Deposit</a></li>
+               <li class="active"><a href="../td/td.php">Term Deposit</a></li>
                <li><a href="../loan/loan.php">Loan</a></li>
-               <li><a href="../login.html">Logout</a></li>
+               <li><a href="../logout_back.php">Logout</a></li>
                <li><a href="#">About Us</a></li>
              </ul>
     </div>
@@ -62,7 +62,7 @@
                     <select name="slct1" class="slct1" id="slct1">
                       <option selected disabled>---</option>
                         <?php
-	                    $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+	                    $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
                         $sql="SELECT tenure FROM interests WHERE type='td'";
                         $query=$pdo->query($sql);
@@ -81,9 +81,6 @@
             <button type="button" name="info" id="info" class="button button1">VIEW INTEREST RATES</button>
             <button type="button" name="create" class="button button2" onclick="location.href='create_td.php?amount='+ document.getElementById('amount').value+'&slct1='+ document.getElementById('slct1').value;">
             CREATE</button>
-            <!--<button type="button" name="create" class="button button2" onclick="alert('Term deposit successfully created.')">
-            <a href='create_td.php?amount='+ document.getElementById('amount').value+'&slct1='+ document.getElementById('slct1').value;>
-            CREATE</a></button>-->
         </div>
         <!-------------------------------------------> 
 
@@ -109,9 +106,9 @@
 
                 <tbody>
                 <?php 
-					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="select * FROM td where account_no= '".$_SESSION["account_no"]."'";
+					$sql="select * FROM td where account_no= '".$_SESSION["account"]."'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
                         $exp = date('Y-m-d', strtotime($row['creation_date']. "+ {$row['tenure']} years"));
@@ -123,7 +120,7 @@
                             <td> <?php echo $row['creation_date']; ?></td>
                             <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
                             
-                            <?php if($date == $exp)
+                            <?php if($date >= $exp)
                             {?>
                             <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
                             <?php } ?> 
@@ -137,34 +134,6 @@
             </table>
         </div>
         <!------------------------------------------->
-
-        <!--Manage TD block------------------------->
-        <!--<div class="block1">
-            <h1 class="A">Manage Term Deposit</h1>
-        </div>  
-        <div class="select">
-            <label for="slct" class="label-field">Term Deposit to manage</label> 
-            <select name="slct" class="slct" id="slct">
-              <option selected disabled>Select TD</option>
-              <?php
-	                $pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
-
-                    $sql="select td_id FROM td";
-                    $query=$pdo->query($sql);
-	                foreach ($pdo->query($sql) as $row)//Array or records stored in $row
-		            {
-			            echo "<option value=$row[td_id]>$row[td_id]</option>"; 
-		            }
-	         ?>
-            </select>
-          </div>
-        
-        <div class="flex-container3">
-            <button type="button" name="info" class="button button2">BREAK</button>
-            
-            <button type="button" name="create" class="button button2">RENEW</button>
-        </div>
-        <!------------------------------------------>
         <div class="block3"></div>
     </div> 
 
@@ -189,7 +158,7 @@
 
                 <tbody>
                 <?php 
-					$pdo = new PDO('mysql:host=localhost;dbname=omfs', 'root', '');
+					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
 					$sql="select tenure,rate FROM interests where type='td'";
 					$query=$pdo->query($sql);
