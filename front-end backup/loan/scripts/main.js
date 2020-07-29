@@ -9,13 +9,13 @@ var span = document.getElementsByClassName("close")[0];
 
 function update()
 {
-  document.getElementById("print").innerHTML = document.getElementById("amount").value;
+  principal = document.getElementById("amount").value;
+
 }
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
-  update();
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -29,3 +29,15 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+//Reset field values of overlay
+var res = document.getElementById("reset");
+
+res.onclick = function() {
+  document.getElementById("amount2").value = "";
+  document.getElementById("installment2").selectedIndex = -1;
+  document.getElementById("emi1").value = "";
+  document.getElementById("total_inte").value = "";
+  document.getElementById("total").value = "";
+}
+

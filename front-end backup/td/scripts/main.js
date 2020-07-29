@@ -7,12 +7,6 @@ var btn = document.getElementById("info");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-function update()
-{
-  principal = document.getElementById("amount").value;
-
-}
-
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -29,15 +23,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-//Reset field values of overlay
-var res = document.getElementById("reset");
-
-res.onclick = function() {
-  document.getElementById("amount2").value = "";
-  document.getElementById("installment2").selectedIndex = -1;
-  document.getElementById("emi1").value = "";
-  document.getElementById("total_inte").value = "";
-  document.getElementById("total").value = "";
-}
-
+/*
+//Get the renew button of every row marked by same id
+var btn1 = document.getElementById("renew");
+btn1.onclick = function() {
+  
+}*/
