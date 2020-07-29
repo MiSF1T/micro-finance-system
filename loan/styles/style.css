@@ -6,12 +6,11 @@ html {
 
 body {
     margin: 0 auto;
-    background-image: url('../images/abs.jpg');
+    /*background-image: url('../images/abs.jpg');
     /*background-color: rgba(12, 12, 12, 0.9);*/
     height: 100%;
     background-size: cover;
     background-position: center;
-
 }
 
 /* Add a box container for all body elements */
@@ -20,43 +19,15 @@ body {
     margin: 0 auto;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 35px 35px rgba(109, 109, 109, 0.7);
 }
 
 /* Remove outline on focus */
 *:focus {
   outline: 0 !important;
 }
-/*NAVBAR: -----------------------------------------------*/
-/* Add a black background to the top navigation */
-/*
-.topnav {  
-    background-image: url('../images/nav.jpg');
-    background-color: rgba(0, 0, 0, 0.8);
-    overflow: hidden;
-  }
 
-  /* Style the links inside the navigation bar */
-  /*.topnav a {
-    float: right;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-  /*.topnav a:hover{
-    background-color:rgba(26, 209, 234, 0.9);
-    color: rgba(255, 255, 255, 0.9);
-    transition-duration: 0.6s;
-  }
-  
-  /* Add a color to the active/current link */
-  /*.topnav a.active {
-    background-color: rgba(19, 57, 114, 0.9);
-    color: rgb(255, 255, 255);
-  }*/
+/*NAVBAR: -----------------------------------------------*/
   .menu_bar{
     background: rgb(0,0,0);
     text-align: right;
@@ -70,7 +41,7 @@ body {
 }
 .menu_bar ul li{
     width: auto;
-    margin: 22px;
+    margin: 12px;
     padding: 15px;
     transition: 0.2s;
 }
@@ -132,17 +103,34 @@ body {
 
 /* INTRO: -------------------------------------------------*/
 
-img {
+/*img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
   width: 100%;
   height: 350px;
+}*/
+
+.intro {
+    background-image: url('../images/loan3.jpg');
+    display: block;
+    margin: auto;
+
+    width: 100%;
+    display: flex;
+    background-position: center;
+    background-size: 100% 100%;
+}
+.intro-txt {
+  margin-left: 41%;
+  margin-top: 1%;
+  width: 50%;
+  padding: 40px;
+  text-align: right;
 }
 
 .img-head {
   font-size:5vw;
-  font-weight: 900;
   text-align: right;
   margin: 0px 0px 15px 0px;
   padding: 6px;    
@@ -150,15 +138,15 @@ img {
   -webkit-text-stroke-width: 4px; 
   -webkit-text-stroke-color: rgba(0, 50, 107,0.9);
 
-  position: absolute;
+  /*position: absolute;
   top: 26%;
   left: 74.5%;
-  transform: translate( -50%, -50% );
+  transform: translate( -50%, -50% );*/
 }
 
 .information {
     font-size:1.2vw;
-    font-weight: 900;
+    font-weight: 600;
     text-align: right;
     margin: 0px 0px 15px 0px;
     padding: 6px;    
@@ -166,10 +154,10 @@ img {
     -webkit-text-stroke-width: .5px; 
     -webkit-text-stroke-color: rgba(0, 0, 0, 0.9);
     
-    position: absolute;
+    /*position: absolute;
     top: 45%;
     left: 63%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50% );*/
     
 }
 /*---------------------------------------------------------*/

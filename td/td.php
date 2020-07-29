@@ -36,12 +36,13 @@
     <div class="super-container">
         <!--Intro Image and desc-------------------->
         <div class="intro">
-            <img src="images/term.jpg" alt="Term Deposit Description">
-            <h1 class="img-head">TERM DEPOSIT</h1>
-            <p class="information">You can create term deposit by specifying amount and tenure.
-                Currently active term deposits are displayed in the table. Note: Renew is only
-                shown for matured term deposits.
-            </p>
+            <div class="intro-txt">
+                <h1 class="img-head">TERM DEPOSIT</h1>
+                <p class="information">You can create term deposit by specifying amount and tenure.
+                    Currently active term deposits are displayed in the table. Note: Renew is only
+                    shown for matured term deposits.
+                </p>
+            </div>
         </div>
         <!------------------------------------------>
         

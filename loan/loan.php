@@ -4,8 +4,8 @@ session_start();
 $db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account"]."' LIMIT 1");
-//$sql=$db->prepare("select * FROM loan LIMIT 1");
+//$sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account"]."' LIMIT 1");
+$sql=$db->prepare("select * FROM loan LIMIT 1");
 $sql->execute(); 
 $count = $sql->rowCount();
 $row = $sql->fetch();
@@ -46,13 +46,14 @@ $row = $sql->fetch();
     <div class="super-container">
         <!--Intro Image and desc-------------------->
         <div class="intro">
-            <img src="images/loan3.jpg" alt="Loan Description">
-            <h1 class="img-head">LOAN</h1>
-            <p class="information">You can request for loan by specifying amount, annual income
-                and the number of installments. Previous loans must be cleared to avail new loan.
-                You also have to be a member for at least a year to avail loan services.
-                Currently active loan information is displayed, if any.
-            </p>
+            <div class="intro-txt">
+                <h1 class="img-head">LOAN</h1>
+                <p class="information">You can request for loan by specifying amount, annual income
+                    and the number of installments. Previous loans must be cleared to avail new loan.
+                    You also have to be a member for at least a year to avail loan services.
+                    Currently active loan information is displayed, if any.
+                </p>
+            </div>
         </div>
         <!------------------------------------------>
 
