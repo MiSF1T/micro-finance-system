@@ -134,6 +134,34 @@
             </table>
         </div>
         <!------------------------------------------->
+
+        <!--Manage TD block------------------------->
+        <!--<div class="block1">
+            <h1 class="A">Manage Term Deposit</h1>
+        </div>  
+        <div class="select">
+            <label for="slct" class="label-field">Term Deposit to manage</label> 
+            <select name="slct" class="slct" id="slct">
+              <option selected disabled>Select TD</option>
+              <?php
+	                $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
+
+                    $sql="select td_id FROM td WHERE account_no= '".$_SESSION["account"]."'";
+                    $query=$pdo->query($sql);
+	                foreach ($pdo->query($sql) as $row)//Array or records stored in $row
+		            {
+			            echo "<option value=$row[td_id]>$row[td_id]</option>"; 
+		            }
+	         ?>
+            </select>
+          </div>
+        
+        <div class="flex-container3">
+            <button type="button" name="info" class="button button2">BREAK</button>
+            
+            <button type="button" name="create" class="button button2">RENEW</button>
+        </div>
+        <!------------------------------------------>
         <div class="block3"></div>
     </div> 
 

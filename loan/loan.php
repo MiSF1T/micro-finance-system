@@ -5,6 +5,7 @@ $db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql=$db->prepare("select * FROM loan where account_no= '".$_SESSION["account"]."' LIMIT 1");
+//$sql=$db->prepare("select * FROM loan LIMIT 1");
 $sql->execute(); 
 $count = $sql->rowCount();
 $row = $sql->fetch();
