@@ -66,11 +66,11 @@
                         <?php
 	                    $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-                        $sql="SELECT tenure FROM interests WHERE type='td'";
+                        $sql="SELECT Tenure FROM Interests WHERE Type='td'";
                         $query=$pdo->query($sql);
 	                    foreach ($pdo->query($sql) as $row)//Array or records stored in $row
 		                {
-			                echo "<option value=$row[tenure]>$row[tenure] Year(s)</option>"; 
+			                echo "<option value=$row[Tenure]>$row[Tenure] Year(s)</option>"; 
 		                }
 	                    ?>
                     </select>
@@ -101,8 +101,7 @@
                     <th>AMOUNT</th>
                     <th>TENURE(years)</th>
                     <th>CREATION DATE</th>
-                    <th>BREAK</th>
-                    <th>RENEW</th>
+                    <th>MANAGE</th>
                 </tr>
                 </thead>
 
@@ -110,23 +109,25 @@
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="select * FROM td where account_no= '".$_SESSION["account"]."'";
+					$sql="SELECT * FROM TD WHERE Account_No= '".$_SESSION["account"]."'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
-                        $exp = date('Y-m-d', strtotime($row['creation_date']. "+ {$row['tenure']} years"));
+                        $exp = date('Y-m-d', strtotime($row['Creation_Date']. "+ {$row['Tenure']} years")); //Get expiration date
+                        $lower = date('Y-m-d', strtotime($row['Creation_Date']. "+6 months"))               //Set TD locking period
 						?>
 						<tr>
-							<td> <?php echo $row['td_id']; ?></td>
-                            <td> ₹<?php echo $row['amount']; ?></td>
-                            <td> <?php echo $row['tenure']; ?></td>
-                            <td> <?php echo $row['creation_date']; ?></td>
-                            <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['td_id'];?>">BREAK</a></button></td>
-                            
+							<td> <?php echo $row['Td_Id']; ?></td>
+                            <td> ₹<?php echo $row['Amount']; ?></td>
+                            <td> <?php echo $row['Tenure']; ?></td>
+                            <td> <?php echo $row['Creation_Date']; ?></td>
+                            <?php if($date < $exp and $date > $lower)
+                            {?>
+                            <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['Td_Id'];?>">BREAK</a></button></td>
+                            <?php } ?> 
                             <?php if($date >= $exp)
                             {?>
-                            <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['td_id'];?>">RENEW</a></button></td>
+                            <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['Td_Id'];?>">RENEW</a></button></td>
                             <?php } ?> 
-
                         </tr>
 						<?php
 
@@ -145,7 +146,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h3>Interest Rates</h3>
+                <h3 class="header">Interest Rates</h3>
             </div>
             
             <!--interest rates -->
@@ -162,13 +163,13 @@
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="select tenure,rate FROM interests where type='td'";
+					$sql="SELECT Tenure,Rate FROM Interests WHERE type='td'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
 						?>
 						<tr>
-                            <td> <?php echo $row['tenure']; ?></td>
-                            <td> <?php echo $row['rate']; ?>%</td>
+                            <td> <?php echo $row['Tenure']; ?></td>
+                            <td> <?php echo $row['Rate']; ?>%</td>
 						</tr>
 						<?php
 					}
