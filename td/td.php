@@ -66,7 +66,7 @@
                         <?php
 	                    $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-                        $sql="SELECT Tenure FROM Interests WHERE Type='td'";
+                        $sql="SELECT Tenure FROM Interests WHERE Type='Term Deposit'";
                         $query=$pdo->query($sql);
 	                    foreach ($pdo->query($sql) as $row)//Array or records stored in $row
 		                {
@@ -163,7 +163,7 @@
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="SELECT Tenure,Rate FROM Interests WHERE type='td'";
+					$sql="SELECT Tenure,Rate FROM Interests WHERE type='Term Deposit'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
 						?>

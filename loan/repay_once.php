@@ -12,7 +12,7 @@
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try{
-        $querySql = $db->query("SELECT * FROM Interests WHERE Type = 'loan' LIMIT 1");
+        $querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Loan' LIMIT 1");
         $row = $querySql->fetch();
         $r = $row['Rate'];
         

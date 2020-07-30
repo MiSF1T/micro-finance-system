@@ -22,7 +22,7 @@ try
 	$amount = $row['Amount'];
 	
 	//get TD interest rate
-	$querySql = $db->query("SELECT * FROM Interests WHERE Type = 'td' AND Tenure= '". $tenure ."'");
+	$querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Term Deposit' AND Tenure= '". $tenure ."'");
     $row1 = $querySql->fetch();
 	$rate = $row1['Rate'];
 	
