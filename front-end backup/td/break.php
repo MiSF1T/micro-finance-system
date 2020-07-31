@@ -9,41 +9,57 @@ function dateDiff ($d1, $d2) {
 $id = $_GET['id'];
 $date = date('Y-m-d');
 
+$status = "Successful";
+$type = "Term Deposit Amount";
+
 $db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
 {
-	//get TD interest rate
-	$querySql = $db->query("SELECT * FROM interests WHERE Type = 'td'");
-    $row = $querySql->fetch();
-	$rate = $row['rate'];
-
 	//Fetch selected TD details
-	$query = $db->query("SELECT * FROM td where account_no= '".$_SESSION["account"]."' AND td_id='". $id ."'");
+	$query = $db->query("SELECT * FROM TD where Account_No= '".$_SESSION["account"]."' AND Td_Id='". $id ."'");
     $row = $query->fetch();
 
-    $tenure = $row['tenure'];
-    $amount = $row['amount'];
+    $tenure = $row['Tenure'];
+	$amount = $row['Amount'];
+	
+	//get TD interest rate
+	$querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Term Deposit' AND Tenure= '". $tenure ."'");
+    $row1 = $querySql->fetch();
+	$rate = $row1['Rate'];
 	
 	//Calculate return amount
-	$difference = round(dateDiff($date,$row["creation_date"])/30);      //No. of months 
-    $remaining = $row["tenure"] - ($difference/12);			//No of years remaining
-	$td_amount = $amount*pow((1+($rate/100)), $remaining);
+	$difference = (round(dateDiff($date,$row["Creation_Date"])/30)/12);      //No. of years passed b/w now and creation date
 
-	//update balance
-	$sql = $db->query("UPDATE account SET balance= balance + '" .$td_amount. "' WHERE account_no= '".$_SESSION["account"]."'");
-	$sql->execute();
+	$td_amount = $amount*pow((1+($rate/100)), $difference);
 	
-	$queryStr = "DELETE FROM `td` WHERE `td_id`='". $id ."'";
+	//Delete entry from TD table
+	$queryStr = "DELETE FROM `TD` WHERE `Td_Id`='". $id ."'";
 	$query = $db->prepare($queryStr);
 	$query->execute();
+
+	//Get old balance
+	$queryStr1 = $db->query("SELECT Balance FROM Account WHERE Account_No= '".$_SESSION["account"]."'");
+	$row2 = $queryStr1->fetch();
+	
+	//update balance
+	$sql = $db->query("UPDATE Account SET Balance = ".$row2['Balance']." + ".$td_amount." WHERE Account_No= '".$_SESSION["account"]."'");
+	$sql->execute();
+
+	//Create transaction
+	$queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+	$query = $db->prepare($queryStr);
+	$query->execute([$_SESSION["account"],$amount,$date,$status,$type]);
+
+	//Notify user
+	echo '<script type="text/javascript">'; 
+	echo 'alert("Selected term deposit has been closed.");'; 
+	echo 'window.location.href = "td.php";';
+	echo '</script>';
 }
 catch(PDOException $e)
 {
 	echo $e->getMessage();
 }
-
-header('location:td.php');
-
 ?>

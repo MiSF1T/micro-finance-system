@@ -9,6 +9,9 @@ function dateDiff ($d1, $d2) {
 $id = $_GET['id'];
 $date = date('Y-m-d');
 
+$status = "Successful";
+$type = "Term Deposit Amount";
+
 $db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -43,11 +46,20 @@ try
 	//update balance
 	$sql = $db->query("UPDATE Account SET Balance = ".$row2['Balance']." + ".$td_amount." WHERE Account_No= '".$_SESSION["account"]."'");
 	$sql->execute();
+
+	//Create transaction
+	$queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+	$query = $db->prepare($queryStr);
+	$query->execute([$_SESSION["account"],$amount,$date,$status,$type]);
+
+	//Notify user
+	echo '<script type="text/javascript">'; 
+	echo 'alert("Selected term deposit has been closed.");'; 
+	echo 'window.location.href = "td.php";';
+	echo '</script>';
 }
 catch(PDOException $e)
 {
 	echo $e->getMessage();
 }
-
-header('location:td.php');
 ?>

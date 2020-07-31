@@ -122,11 +122,11 @@
                             <td> <?php echo $row['Creation_Date']; ?></td>
                             <?php if($date < $exp and $date > $lower)
                             {?>
-                            <td><button class="button3" onclick="alert('Selected term deposit has been closed.')"><a href="break.php?id=<?php echo $row['Td_Id'];?>">BREAK</a></button></td>
+                            <td><button class="button3"><a href="break.php?id=<?php echo $row['Td_Id'];?>">BREAK</a></button></td>
                             <?php } ?> 
                             <?php if($date >= $exp)
                             {?>
-                            <td><button class="button4" id="renew" onclick="alert('Selected term deposit has been renewed.')"><a href="renew.php?id=<?php echo $row['Td_Id'];?>">RENEW</a></button></td>
+                            <td><button class="button4" id="renew"><a href="renew.php?id=<?php echo $row['Td_Id'];?>">RENEW</a></button></td>
                             <?php } ?> 
                         </tr>
 						<?php

@@ -10,15 +10,16 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
 {
-	$queryStr = "INSERT INTO loan(account_no,amount,installments,income,creation_date) VALUES(?,?,?,?,?)";
-	//$queryStr = "INSERT INTO loan(amount,installments,income,creation_date) VALUES(?,?,?,?)";
+	$queryStr = "INSERT INTO Loan(Account_No,Amount,Installments,Income,Creation_Date) VALUES(?,?,?,?,?)";
 	$query = $db->prepare($queryStr);
-	$query->execute([$_SESSION["account_no"],$loan_amount,$installments,$income,$date]);
-	//$query->execute([$loan_amount,$installments,$income,$date]);
+	$query->execute([$_SESSION["account"],$loan_amount,$installments,$income,$date]);
 
-	$sql = $db->query("UPDATE account SET balance = balance + '" .$loan_amount. "' WHERE account_no= '".$_SESSION["account"]."'");
+	$queryStr1 = $db->query("SELECT Balance FROM Account WHERE Account_No= '".$_SESSION["account"]."'");	//Get current balance of the account
+	$row2 = $queryStr1->fetch();
+
+	//Update balance with loan amount
+	$sql = $db->query("UPDATE Account SET Balance = '".$row2['Balance']."' + '" .$loan_amount. "' WHERE Account_No= '".$_SESSION["account"]."'");
 	$sql->execute();
-
 }
 catch(PDOException $e)
 {

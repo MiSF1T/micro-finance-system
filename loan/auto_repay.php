@@ -1,8 +1,12 @@
 <?php
+        $date = date('Y-m-d');
+        $status = "Successful";						//Set variables for the transaction
+        $type = "Loan Interest";
+        
         $db = new PDO("mysql:host=localhost;dbname=mfs","root","");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Loan' LIMIT 1");
+        $querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Loan' LIMIT 1");      //Get interest rate
         $row = $querySql->fetch();
         $r = $row['Rate'];
         
@@ -20,6 +24,12 @@
             $queryStr = $db->query("SELECT Balance FROM Account WHERE Account_No= '".$rows["Account_No"]."'");      //Get current balance of account in iteration
             $row2 = $queryStr->fetch();
 
+            //Create transaction
+		    $queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+		    $query = $db->prepare($queryStr);
+            $query->execute([$account,$emi,$date,$status,$type]);
+            
+            //Update balance
             $sql = $db->query("UPDATE Account SET Balance= ".$row2['Balance']." - '" .$emi. "' WHERE Account_No= '".$rows["Account_No"]."'");
             $sql->execute();
         }  
