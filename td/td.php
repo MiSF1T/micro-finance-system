@@ -15,13 +15,21 @@
 
   <body>
     <div class="menu_bar">
+
+         <!---------- Logo ------------------------------->
+
+        <div class="logo">
+            <img class="icon" src="../images/icon.jpg"/>
+            <label class="logo-label">REPO FINANCES</label>
+        </div>
+
             <ul>
-                <li><a href="../main_page/main.php">Home</a></li>
+                <li><a href="../main/main.php">Home</a></li>
                <li><a href="#">Transaction</a>
                     <div class="sub_menu">
                         <ul>
                             <li><a href="../Create Transaction/Create_transaction.php">Create</a></li>
-                            <li><a href="../My Transactions/My_transactions.php">View</a></li>
+                            <li><a href="../My Transaction/My_transactions.php">View</a></li>
                         </ul>
                     </div>
                </li>
@@ -62,11 +70,11 @@
             <div class="tenure">
                 <label for="tenure" class="label-field">Tenure</label>
                     <select name="slct1" class="slct1" id="slct1">
-                      <option selected disabled>---</option>
+                      <option selected disabled hidden>---</option>
                         <?php
 	                    $pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-                        $sql="SELECT Tenure FROM Interests WHERE Type='Term Deposit'";
+                        $sql="SELECT Tenure FROM interests WHERE Type='Term Deposit'";
                         $query=$pdo->query($sql);
 	                    foreach ($pdo->query($sql) as $row)//Array or records stored in $row
 		                {
@@ -109,24 +117,24 @@
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="SELECT * FROM TD WHERE Account_No= '".$_SESSION["account"]."'";
+					$sql="SELECT * FROM td WHERE Account_No= '".$_SESSION["account"]."'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
                         $exp = date('Y-m-d', strtotime($row['Creation_Date']. "+ {$row['Tenure']} years")); //Get expiration date
                         $lower = date('Y-m-d', strtotime($row['Creation_Date']. "+6 months"))               //Set TD locking period
 						?>
 						<tr>
-							<td> <?php echo $row['Td_Id']; ?></td>
+							<td> <?php echo $row['TD_ID']; ?></td>
                             <td> ₹<?php echo $row['Amount']; ?></td>
                             <td> <?php echo $row['Tenure']; ?></td>
                             <td> <?php echo $row['Creation_Date']; ?></td>
                             <?php if($date < $exp and $date > $lower)
                             {?>
-                            <td><button class="button3"><a href="break.php?id=<?php echo $row['Td_Id'];?>">BREAK</a></button></td>
+                            <td><button class="button3"><a href="break.php?id=<?php echo $row['TD_ID'];?>">BREAK</a></button></td>
                             <?php } ?> 
                             <?php if($date >= $exp)
                             {?>
-                            <td><button class="button4" id="renew"><a href="renew.php?id=<?php echo $row['Td_Id'];?>">RENEW</a></button></td>
+                            <td><button class="button4" id="renew"><a href="renew.php?id=<?php echo $row['TD_ID'];?>">RENEW</a></button></td>
                             <?php } ?> 
                         </tr>
 						<?php
@@ -163,7 +171,7 @@
                 <?php 
 					$pdo = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
 
-					$sql="SELECT Tenure,Rate FROM Interests WHERE type='Term Deposit'";
+					$sql="SELECT Tenure,Rate FROM interests WHERE type='Term Deposit'";
 					$query=$pdo->query($sql);
 					foreach($pdo->query($sql) as $row){
 						?>
@@ -181,4 +189,4 @@
     <!-------------------------------------------> 
     <script src="scripts/main.js"></script>
     </body>
-  </html>
+</html>

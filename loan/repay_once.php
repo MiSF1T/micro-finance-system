@@ -15,11 +15,11 @@
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try{
-            $querySql = $db->query("SELECT * FROM Interests WHERE Type = 'Loan' LIMIT 1");          //Get interest rate
+            $querySql = $db->query("SELECT * FROM interests WHERE Type = 'Loan' LIMIT 1");          //Get interest rate
             $row = $querySql->fetch();
             $r = $row['Rate'];
         
-            $query = $db->query("SELECT * FROM Loan WHERE Account_No= '".$_SESSION["account"]."'"); //Get loan info 
+            $query = $db->query("SELECT * FROM loan WHERE Account_No= '".$_SESSION["account"]."'"); //Get loan info 
             $row = $query->fetch();
 
             $n = $row['Installments'];
@@ -33,22 +33,22 @@
             $emi = round(( $principal * $rate * pow(( 1 + $rate), $n) / ( pow(( 1 + $rate), $n ) - 1 ) ));
             $emi = $emi * $remaining;
 
-            $queryStr1 = $db->query("SELECT Balance FROM Account WHERE Account_No= '".$_SESSION["account"]."'");	//Get current balance of the account
+            $queryStr1 = $db->query("SELECT Balance FROM accounts WHERE Account_No= '".$_SESSION["account"]."'");	//Get current balance of the account
             $row2 = $queryStr1->fetch();
 
             if($row2['Balance'] > $emi)
             {
                 //Deduct balance
-                $sql = $db->query("UPDATE Account SET Balance= '".$row2['Balance']."' - '" .$emi. "' WHERE Account_No= '".$_SESSION["account"]."'");
+                $sql = $db->query("UPDATE accounts SET Balance= '".$row2['Balance']."' - '" .$emi. "' WHERE Account_No= '".$_SESSION["account"]."'");
                 $sql->execute();
 
                 //Delete entry from Loan table
-	            $queryStr = "DELETE FROM Loan WHERE Loan_Id='". $id ."'";
+	            $queryStr = "DELETE FROM loan WHERE Loan_Id='". $id ."'";
 	            $query = $db->prepare($queryStr);
                 $query->execute();
 
                 //Create transaction
-		        $queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+		        $queryStr = "INSERT INTO transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
 		        $query = $db->prepare($queryStr);
 		        $query->execute([$_SESSION["account"],$emi,$date,$status,$type]);
                 

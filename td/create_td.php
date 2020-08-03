@@ -15,7 +15,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try
 {
-	$sql = $db->query("SELECT Balance FROM Account where Account_No= '".$_SESSION["account"]."'");
+	$sql = $db->query("SELECT Balance FROM accounts where Account_No= '".$_SESSION["account"]."'");
 	$row = $sql->fetch();
 	
 	if($row['Balance'] < $min_balance)
@@ -36,16 +36,16 @@ try
 	else
 	{
 		//Add new term deposit to TD table
-		$queryStr = "INSERT INTO TD(Account_No,Amount,Tenure,Creation_Date) VALUES(?,?,?,?)";
+		$queryStr = "INSERT INTO td(Account_No,Amount,Tenure,Creation_Date) VALUES(?,?,?,?)";
 		$query = $db->prepare($queryStr);
 		$query->execute([$_SESSION["account"],$td_amount,$tenure,$date]);
 
 		//Deduct term deposit amount from balance
-		$queryStr = $db->query("UPDATE Account SET Balance = ".$row['Balance']." - ".$td_amount." WHERE Account_No= '".$_SESSION["account"]."'");
+		$queryStr = $db->query("UPDATE accounts SET Balance = ".$row['Balance']." - ".$td_amount." WHERE Account_No= '".$_SESSION["account"]."'");
 		$queryStr->execute();
 
 		//Create transaction
-		$queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+		$queryStr = "INSERT INTO transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
 		$query = $db->prepare($queryStr);
 		$query->execute([$_SESSION["account"],$td_amount,$date,$status,$type]);
 		

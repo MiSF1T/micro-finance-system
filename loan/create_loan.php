@@ -18,7 +18,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try
 {	
 	//Get current balance
-	$sql = $db->query("SELECT Balance FROM Account where Account_No= '".$_SESSION["account"]."'");
+	$sql = $db->query("SELECT Balance FROM accounts where Account_No= '".$_SESSION["account"]."'");
 	$row = $sql->fetch();
 
 	if($row['Balance'] < $min_balance)								//If minimum balance is not maintained, alert so
@@ -31,16 +31,16 @@ try
 	elseif($row['Balance'] > ($loan_amount * $approval_percentage)) // Check if current balance is greater than specified percentage of loan amount
 	{
 		//Add loan to loan table
-		$queryStr = "INSERT INTO Loan(Account_No,Amount,Installments,Income,Creation_Date) VALUES(?,?,?,?,?)";
+		$queryStr = "INSERT INTO loan(Account_No,Amount,Installments,Income,Creation_Date) VALUES(?,?,?,?,?)";
 		$query = $db->prepare($queryStr);
 		$query->execute([$_SESSION["account"],$loan_amount,$installments,$income,$date]);
 
 		//Update balance with loan amount
-		$QueryStr1 = $db->query("UPDATE Account SET Balance = '".$row['Balance']."' + '" .$loan_amount. "' WHERE Account_No= '".$_SESSION["account"]."'");
+		$QueryStr1 = $db->query("UPDATE accounts SET Balance = '".$row['Balance']."' + '" .$loan_amount. "' WHERE Account_No= '".$_SESSION["account"]."'");
 		$QueryStr1->execute();
 
 		//Create transaction
-		$queryStr = "INSERT INTO Transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
+		$queryStr = "INSERT INTO transactions(Account_No,Amount,Date,Status,Type) VALUES(?,?,?,?,?)";
 		$query = $db->prepare($queryStr);
 		$query->execute([$_SESSION["account"],$loan_amount,$date,$status,$type]);
 
