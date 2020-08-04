@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "../common variables/common_var.php";				//Get minimum balance
+require "../common variables/common_var.php";				//Get minimum balance and approval percentage
 
 $loan_amount = $_GET["amount"];
 $installments = $_GET["slct1"];
@@ -10,10 +10,8 @@ $date = date('Y-m-d');
 
 $status = "Successful";						//Set variables for the transaction
 $type = "Loan Amount";
-$approval_percentage = 0.25;				//Current balance should be greater than this percentage of loan amount to get loan
 
-$db = new PDO('mysql:host=localhost;dbname=mfs', 'root', '');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include "../connection.php";
 
 try
 {	

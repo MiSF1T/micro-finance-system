@@ -20,23 +20,22 @@ body {
 /*Logo -----------------*/
 .nav-icon {
   width: 20%;
-  height: 88%;
+  height: 80%;
 }
 
 .logo-label {
-  margin-top: 2.5%;
-  font-family: Cambria;
-  font-size: 38px;
+    margin-top: 3%;
+    font-family: Cambria;
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-weight: 500;
 }
 .logo {
   width: 25%;
-  color: #ffffff;
-  margin-top: 1.5%;
-  letter-spacing: 2px;
-  margin-left: 1.5%;
-  background-position: center;
-  background-size: 100% 90%;
-  display: flex;
+    margin-top: 1.2%;
+    margin-left: 1.5%;
+    display: flex;
 }
 /*---------------------*/
 .menu_bar{
