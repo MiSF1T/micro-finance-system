@@ -46,7 +46,7 @@
 			</form>	
 			
 			<form id="register" method="POST" action="login/register_back.php" class="input">
-				<input type="text" name="username" id="u_name" class="input-field" placeholder="Username" required>
+				<input type="text" name="username" id="u_name" class="input-field" placeholder="Full Name" required>
 				<input type="email" name="email" id="mail" class="input-field" placeholder="Email" required>
 				<input type="password" name="password" id="pass" class="input-field" placeholder="Password" required>
 				<br><br><br><br>
